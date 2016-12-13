@@ -105,7 +105,7 @@ private:
 		while (!input.eof())
 		{
 			int i = 0;
-			input >> firstnames[i];
+			std::getline(input, firstnames[i]);
 			i++;
 		}
 		input.close();
@@ -117,7 +117,7 @@ private:
 		while (!input.eof())
 		{
 			int i = 0;
-			input >> lastnames[i / 2];
+			std::getline(input, lastnames[i / 2]);
 			i++;
 		}
 		input.close();
