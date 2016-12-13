@@ -106,12 +106,5 @@ public:
 	{
 		return driver;
 	}
-
-	//DONT'T FORGET
-	//TODO: Figure out if this is necessary
-	/*~Car()
-	{
-		delete[] driver;
-	};*/
 };
 #endif

@@ -18,11 +18,18 @@ private:
 	int timeSpentVariation;
 public:
 
+	/*
+	Default constructor for building
+	*/
 	Building()
 	{
 
 	}
 
+
+	/*
+	Constructor for building
+	*/
 	Building(DestinationStreet &s1, DestinationStreet &s2, int minTimeSpent, int maxTimeSpent)
 	{
 		connectedStreets[0] = &s1;
@@ -31,6 +38,10 @@ public:
 		this->timeSpentVariation = maxTimeSpent - minTimeSpent;
 	}
 
+
+	/*
+	Update function. updates the Cars in its queue by taking from and sending to the queues of the streets it is connected to
+	*/
 	void update(int clock)
 	{
 		while (visitors.top().getProjArrTime() <= clock) // Send cars that are ready to leave away
@@ -64,6 +75,9 @@ public:
 	}
 
 
+	/*
+	called at end of simulation. returns all the residents back to the simulation class so they can be part of the summary data
+	*/
 	std::vector<Resident> getAllResidents()
 	{
 		std::vector<Resident> people;
@@ -73,6 +87,7 @@ public:
 			people.push_back(c.getDriver());
 			visitors.pop();
 		}
+		return people;
 	}
 
 };

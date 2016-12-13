@@ -83,6 +83,10 @@ public:
 		this->capacity = capacity;
 	}
 
+
+	/*
+	called at end of simulation. returns all the residents back to the simulation class so they can be part of the summary data
+	*/
 	std::vector<Resident> getAllResidents()
 	{
 		std::vector<Resident> people;
@@ -98,6 +102,7 @@ public:
 			people.push_back(c.getDriver());
 			outwardQueue.pop();
 		}
+		return people;
 	}
 };
 

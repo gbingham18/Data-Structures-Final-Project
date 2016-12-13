@@ -1,4 +1,4 @@
-//#pragma once
+#pragma once
 #ifndef EXITSTREET_H_
 #define EXITSTEET_H_
 #include "Street.h"
