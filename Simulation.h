@@ -70,7 +70,7 @@ private:
 	*/
 	void recieveCars(ExitStreet sender)
 	{
-		while (sender.outwardQueue.top().getProjArrTime() <= clock)
+		while (!sender.outwardQueue.empty() && sender.outwardQueue.top().getProjArrTime() <= clock)
 		{
 			Car c = sender.outwardQueue.top();
 			c.reportDTTime(clock);
@@ -98,7 +98,7 @@ private:
 		std::string firstnames[2000];
 		std::string lastnames[2000];
 		std::ifstream input;
-		input.open("residents_of_273ville.txt");
+		input.open("\\\\cs1\\2020\\douellette20\\CS273-1\\Repositories\\Final Project - Data Structures\\residents_of_273ville.txt");
 		if (input.fail()) {
 			std::cout << "File does not exist, exit program. \n";
 		}
@@ -110,7 +110,7 @@ private:
 		}
 		input.close();
 
-		input.open("surnames_of_273ville.txt");
+		input.open("\\\\cs1\\2020\\douellette20\\CS273-1\\Repositories\\Final Project - Data Structures\\surnames_of_273ville.txt");
 		if (input.fail()) {
 			std::cout << "File does not exist, exit program. \n";
 		}
@@ -213,6 +213,8 @@ public:
 			totalDowntownTime += iter.second.getTimeSpentDowntown();
 			totalNumDestinations += iter.second.getDestinations().size();
 		}
+
+		//Error: causes a divide by 0 error. we dont know why
 		double avgTravelTime = totalDowntownTime / totalNumDestinations;
 		std::cout << "There were " << totalNumDestinations << " trips made into town this week.\n";
 		std::cout << "Each trip was an average of " << avgTravelTime << " minutes, for a grand total of "

@@ -44,7 +44,7 @@ public:
 	*/
 	void update(int clock)
 	{
-		while (visitors.top().getProjArrTime() <= clock) // Send cars that are ready to leave away
+		while (!visitors.empty() && visitors.top().getProjArrTime() <= clock) // Send cars that are ready to leave away
 		{
 			DestinationStreet streetToTake = *connectedStreets[sim_rand.next_int(1)];
 			if (streetToTake.outwardQueue.size() < streetToTake.capacity)
@@ -63,7 +63,7 @@ public:
 
 		for (int i = 0; i < 2; i++) // Bring in cars that are ready to come in
 		{
-			while (connectedStreets[i]->inwardQueue.top().getProjArrTime() <= clock)
+			while (!connectedStreets[i]->inwardQueue.empty() && connectedStreets[i]->inwardQueue.top().getProjArrTime() <= clock)
 			{
 				Car c = connectedStreets[i]->inwardQueue.top();
 				c.setCurrPlaceEntryTime(clock);

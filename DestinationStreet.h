@@ -29,7 +29,7 @@ public:
 
 	void updateInner(int clock)
 	{
-		while (es->inwardQueue.top().getProjArrTime() <= clock) // while the first car in the ExitStreet queue is ready to leave
+		while (!es->inwardQueue.empty() && es->inwardQueue.top().getProjArrTime() <= clock) // while the first car in the ExitStreet queue is ready to leave
 		{
 			Car c = es->inwardQueue.top();
 			if (c.getDest() == destination) // Check if that car is coming to this street
@@ -46,7 +46,7 @@ public:
 
 	void updateOuter(int clock)
 	{
-		while (outwardQueue.top().getProjArrTime() <= clock) // While the first car in thsi queue is ready to leave
+		while (!outwardQueue.empty() && outwardQueue.top().getProjArrTime() <= clock) // While the first car in thsi queue is ready to leave
 		{
 			if (es->outwardQueue.size() < es->capacity) // If theres room in the exit queue
 			{
