@@ -7,16 +7,17 @@
 
 class Car
 {
-private:
 	friend class Street;
+	friend class ExitStreet;
+	friend class Building;
+private:
 	int drivingSpeed;
 	int currentRouteEntryTime;
 	int currentPlaceEntryTime;
 	Resident* driver;
-	std::string destination;
 	int projectedArrivalTime;
+	std::string destination;
 public:
-
 	/*
 	Constructor for the car object
 	*/
@@ -26,7 +27,7 @@ public:
 		currentPlaceEntryTime = clock;
 		this->driver = driver;
 		this->destination = destination;
-		drivingSpeed = 25 + rand.next_int(10);
+		drivingSpeed = 25 + sim_rand.next_int(10);
 	};
 
 	/*
@@ -41,11 +42,16 @@ public:
 			return false;
 	}
 
+	int getPAT()
+	{
+		return this->projectedArrivalTime;
+	}
+
 	//DONT'T FORGET
 	//TODO: Figure out if this is necessary
-	/*~Car()
+	~Car()
 	{
 		delete[] driver;
-	};*/
+	};
 };
 #endif

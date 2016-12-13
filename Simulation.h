@@ -4,14 +4,20 @@
 #include <fstream>
 #include <string>
 #include "Random.h"
+#include "Street.h"
+#include "Building.h"
+#include "Resident.h"
+#include "Car.h"
+#include "Intersection.h"
 
-Random rand;
+Random sim_rand;
 
 class Simulation
 {
 private:
 	int total_time;
 	int clock;
+	Resident residents[2000]; //Use shared pointers
 
 	int read_int(const std::string &prompt, int low, int high)
 	{
@@ -39,10 +45,17 @@ private:
 		}
 	}
 
-
 public:
 
+	Simulation()
+	{
 
+	}
+
+	void runSimulation()
+	{
+
+	}
 
 };
 
