@@ -33,14 +33,13 @@ public:
 
 	void update(int clock)
 	{
-		while (visitors.top().projectedArrivalTime <= clock)
+		while (visitors.top().projectedArrivalTime <= clock) // Send cars that are ready to leave away
 		{
 			DestinationStreet streetToTake = *connectedStreets[sim_rand.next_int(1)];
 			if (streetToTake.outwardQueue.size < streetToTake.capacity)
 			{
 				Car c = visitors.top();
-				c.driver->addDestination(visitors.top().destination);
-				c.destination = std::string("exit");
+				c.driver->addDestination(visitors.top().destination); // Add the destination to the residents multiset
 				c.projectedArrivalTime = clock + (streetToTake.length / (1.0 * visitors.top().drivingSpeed) * 60);
 				streetToTake.outwardQueue.push(c);
 				visitors.pop();
@@ -48,21 +47,18 @@ public:
 			else
 				break;
 		}
-	}
 
-	void addVisitor(Car c)
-	{
-		visitors.push(c);
-	}
-
-	int getMinTimeSpent()
-	{
-		return minTimeSpent;
-	}
-
-	int getTimeSpentVariation()
-	{
-		return timeSpentVariation;
+		for (int i = 0; i < 2; i++) // Bring in cars that are ready to come in
+		{
+			while (connectedStreets[i]->inwardQueue.top().getProjArrTime <= clock)
+			{
+				Car c = connectedStreets[i]->inwardQueue.top();
+				c.setCurrPlaceEntryTime(clock);
+				c.setProjArrTime(clock + this->minTimeSpent + sim_rand.next_int(this->timeSpentVariation));
+				connectedStreets[i]->inwardQueue.pop();
+				this->visitors.push(c);
+			}
+		}
 	}
 };
 #endif _BUILDING_H_
