@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 #ifndef INTERSECTION_H_
 #define INTERSECTION_H_
 #include "Street.h"
