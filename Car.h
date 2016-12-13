@@ -1,9 +1,11 @@
-#pragma once
+//#pragma once
 #ifndef CAR_H_
 #define CAR_H_
 #include "Resident.h"
+#include "Random.h"
 #include <string>
-#include "Simulation.h"
+
+extern Random sim_rand;
 
 class Car
 {
@@ -30,6 +32,15 @@ public:
 		drivingSpeed = 25 + sim_rand.next_int(10);
 	};
 
+	Car()
+	{
+		currentPlaceEntryTime = 0;
+		currentRouteEntryTime = 0;
+		projectedArrivalTime = 0;
+		destination = "no";
+
+	}
+
 	/*
 	Overrides the greater than operator using the comparison of when the Cars are supposed to exit their current queue
 	*/
@@ -42,9 +53,39 @@ public:
 			return false;
 	}
 
-	int getPAT()
+	int getProjArrTime() const
 	{
 		return this->projectedArrivalTime;
+	}
+
+	int getCurrPlaceEntryTime() const
+	{
+		return this->currentPlaceEntryTime;
+	}
+
+	int getCurrRouteEntryTime() const
+	{
+		return this->currentRouteEntryTime;
+	}
+	
+	int getDrivingSpeed() const
+	{
+		return this->drivingSpeed;
+	}
+
+	std::string getDest() const
+	{
+		return this->destination;
+	}
+
+	void setCurrPlaceEntryTime(int value)
+	{
+		this->currentPlaceEntryTime = value;
+	}
+
+	void setProjArrTime(int value)
+	{
+		this->projectedArrivalTime = value;
 	}
 
 	//DONT'T FORGET
