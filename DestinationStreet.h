@@ -19,11 +19,12 @@ public:
 		destination = "";
 	}
 
-	DestinationStreet(int length, int capacity, std::string destination)
+	DestinationStreet(int length, int capacity, std::string destination, ExitStreet *es)
 	{
 		this->length = length;
 		this->capacity = capacity;
 		this->destination = destination;
+		this->es = es;
 	}
 
 	void updateInner(int clock)
@@ -34,7 +35,7 @@ public:
 			if (c.getDest() == destination) // Check if that car is coming to this street
 			{
 				c.setCurrPlaceEntryTime(clock);
-				c.setProjArrTime( clock + (this->length / (1.0 * c.getDrivingSpeed) * 60));
+				c.setProjArrTime( clock + (this->length / (1.0 * c.getDrivingSpeed()) * 60));
 				this->inwardQueue.push(c);
 				es->inwardQueue.pop();
 			}
@@ -47,11 +48,11 @@ public:
 	{
 		while (outwardQueue.top().getProjArrTime() <= clock) // While the first car in thsi queue is ready to leave
 		{
-			if (es->outwardQueue.size < es->capacity) // If theres room in the exit queue
+			if (es->outwardQueue.size() < es->capacity) // If theres room in the exit queue
 			{
 				Car c = outwardQueue.top();
 				c.setCurrPlaceEntryTime(clock);
-				c.setProjArrTime(clock + (es->length / (1.0 * c.getDrivingSpeed) * 60));
+				c.setProjArrTime(clock + (es->length / (1.0 * c.getDrivingSpeed()) * 60));
 				es->outwardQueue.push(c);
 				outwardQueue.pop();
 			}

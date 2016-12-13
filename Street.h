@@ -82,6 +82,23 @@ public:
 		this->length = length;
 		this->capacity = capacity;
 	}
+
+	std::vector<Resident> getAllResidents()
+	{
+		std::vector<Resident> people;
+		while (!inwardQueue.empty())
+		{
+			Car c = inwardQueue.top();
+			people.push_back(c.getDriver());
+			inwardQueue.pop();
+		}
+		while (!outwardQueue.empty())
+		{
+			Car c = outwardQueue.top();
+			people.push_back(c.getDriver());
+			outwardQueue.pop();
+		}
+	}
 };
 
 

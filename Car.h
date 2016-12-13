@@ -14,14 +14,14 @@ private:
 	int drivingSpeed;
 	int currentRouteEntryTime;
 	int currentPlaceEntryTime;
-	std::shared_ptr<Resident> driver;
+	Resident driver;
 	int projectedArrivalTime;
 	std::string destination;
 public:
 	/*
 	Constructor for the car object
 	*/
-	Car(int clock, std::shared_ptr<Resident> driver, std::string destination)
+	Car(int clock, Resident driver, std::string destination)
 	{
 		currentRouteEntryTime = clock;
 		currentPlaceEntryTime = clock;
@@ -42,10 +42,11 @@ public:
 	/*
 	Overrides the greater than operator using the comparison of when the Cars are supposed to exit their current queue
 	*/
-	bool operator>(const Car &other) const {
-		if ( projectedArrivalTime < other.projectedArrivalTime)
+	bool operator<(const Car &other) const
+	{
+		if ( projectedArrivalTime > other.projectedArrivalTime)
 			return true;
-		else if (projectedArrivalTime == other.projectedArrivalTime && currentPlaceEntryTime < other.currentPlaceEntryTime)
+		else if (projectedArrivalTime == other.projectedArrivalTime && currentPlaceEntryTime > other.currentPlaceEntryTime)
 			return true;
 		else
 			return false;
@@ -91,11 +92,26 @@ public:
 		currentRouteEntryTime = value;
 	}
 
+	void reportDTTime(int clock)
+	{
+		driver.addDowntownTime(clock - this->currentRouteEntryTime);
+	}
+
+	void reportDestination()
+	{
+		driver.addDestination(destination);
+	}
+
+	Resident getDriver()
+	{
+		return driver;
+	}
+
 	//DONT'T FORGET
 	//TODO: Figure out if this is necessary
-	~Car()
+	/*~Car()
 	{
 		delete[] driver;
-	};
+	};*/
 };
 #endif

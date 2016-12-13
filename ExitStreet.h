@@ -9,18 +9,15 @@ class ExitStreet : public Street
 {
 private:
 
-public: 
+public:
+	
+	ExitStreet() {}
+
+	ExitStreet(int length, int capacity) : Street(length, capacity){}
+
 	void updateInner(int clock) {}
 
-	void updateOuter(int clock)
-	{
-		while (outwardQueue.top().getProjArrTime() <= clock)
-		{
-			outwardQueue.top().driver->addDowntownTime(clock - outwardQueue.top().getCurrRouteEntryTime());
-			//TODO: Add the resident to the map again
-			outwardQueue.pop();
-		}
-	}
+	void updateOuter(int clock){}
 };
 
 

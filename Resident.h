@@ -43,14 +43,19 @@ public:
 		timeSpentDowntown += time;
 	}
 
-	std::multiset<std::string> getDestinations()
+	std::multiset<std::string> getDestinations() const
 	{
 		return destinations;
 	}
 
-	int getTimeSpentDowntown()
+	int getTimeSpentDowntown() const
 	{
 		return timeSpentDowntown;
+	}
+
+	std::string getName() const
+	{
+		return this->name;
 	}
 };
 #endif
