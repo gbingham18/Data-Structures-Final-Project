@@ -90,8 +90,6 @@ private:
 		}
 	}
 
-public:
-
 	/*
 	Reads residents from file and puts them all in a map
 	*/
@@ -130,6 +128,9 @@ public:
 			residents.insert(std::make_pair(name, Resident(name)));
 		}
 	}
+
+
+public:
 
 	/*
 	Prompts the user for data about the flow of traffic into downtown and the street capacities. then creates all the
@@ -261,7 +262,7 @@ public:
 	*/
 	Simulation()
 	{
-
+		getResidents();
 	}
 };
 
