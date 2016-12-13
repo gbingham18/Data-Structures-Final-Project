@@ -14,9 +14,10 @@ public:
 
 	void updateOuter(int clock)
 	{
-		while (outwardQueue.top().projectedArrivalTime <= clock)
+		while (outwardQueue.top().getProjArrTime() <= clock)
 		{
 			outwardQueue.top().driver->addDowntownTime(clock - outwardQueue.top().getCurrRouteEntryTime());
+			//TODO: Add the resident to the map again
 			outwardQueue.pop();
 		}
 	}

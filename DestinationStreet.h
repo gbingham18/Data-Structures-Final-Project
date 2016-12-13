@@ -13,7 +13,6 @@ class DestinationStreet : public Street
 private:
 	std::string destination;
 	ExitStreet *es;
-	Building dest;
 public:
 	DestinationStreet()
 	{
@@ -32,7 +31,7 @@ public:
 		while (es->inwardQueue.top().getProjArrTime() <= clock) // while the first car in the ExitStreet queue is ready to leave
 		{
 			Car c = es->inwardQueue.top();
-			if (c.getDest == destination) // Check if that car is coming to this street
+			if (c.getDest() == destination) // Check if that car is coming to this street
 			{
 				c.setCurrPlaceEntryTime(clock);
 				c.setProjArrTime( clock + (this->length / (1.0 * c.getDrivingSpeed) * 60));

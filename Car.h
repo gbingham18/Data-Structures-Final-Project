@@ -4,26 +4,24 @@
 #include "Resident.h"
 #include "Random.h"
 #include <string>
+#include <memory>
 
 extern Random sim_rand;
 
 class Car
 {
-	friend class Street;
-	friend class ExitStreet;
-	friend class Building;
 private:
 	int drivingSpeed;
 	int currentRouteEntryTime;
 	int currentPlaceEntryTime;
-	Resident* driver;
+	std::shared_ptr<Resident> driver;
 	int projectedArrivalTime;
 	std::string destination;
 public:
 	/*
 	Constructor for the car object
 	*/
-	Car(int clock, Resident *driver, std::string destination)
+	Car(int clock, std::shared_ptr<Resident> driver, std::string destination)
 	{
 		currentRouteEntryTime = clock;
 		currentPlaceEntryTime = clock;

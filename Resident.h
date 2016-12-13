@@ -19,9 +19,9 @@ public:
 		timeSpentDowntown = 0;
 	}
 
-	Resident(std::string firstName, std:: string lastName)
+	Resident(std::string name)
 	{
-		name = firstName + " " + lastName;
+		this->name = name;
 	}
 
 	/*
