@@ -13,6 +13,12 @@ public:
 	/*
 	Constructor for the Resident object
 	*/
+	Resident()
+	{
+		name = "Default Resident";
+		timeSpentDowntown = 0;
+	}
+
 	Resident(std::string firstName, std:: string lastName)
 	{
 		name = firstName + " " + lastName;
@@ -35,6 +41,16 @@ public:
 	void addDowntownTime(int time)
 	{
 		timeSpentDowntown += time;
+	}
+
+	std::multiset<std::string> getDestinations()
+	{
+		return destinations;
+	}
+
+	int getTimeSpentDowntown()
+	{
+		return timeSpentDowntown;
 	}
 };
 #endif

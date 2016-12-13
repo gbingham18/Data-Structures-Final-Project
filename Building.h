@@ -16,6 +16,11 @@ private:
 	Street connectedStreets[2];	
 public:
 
+	Building()
+	{
+
+	}
+
 	Building(Street &s1, Street &s2)
 	{
 		connectedStreets[0] = s1;
