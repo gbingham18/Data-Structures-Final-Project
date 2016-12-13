@@ -17,7 +17,14 @@ private:
 public:
 	DestinationStreet()
 	{
-		destination = "yee";
+		destination = "";
+	}
+
+	DestinationStreet(int length, int capacity, std::string destination)
+	{
+		this->length = length;
+		this->capacity = capacity;
+		this->destination = destination;
 	}
 
 	void updateInner(int clock)

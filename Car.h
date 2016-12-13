@@ -88,6 +88,11 @@ public:
 		this->projectedArrivalTime = value;
 	}
 
+	void setCurrRouteEntryTime(int value)
+	{
+		currentRouteEntryTime = value;
+	}
+
 	//DONT'T FORGET
 	//TODO: Figure out if this is necessary
 	~Car()

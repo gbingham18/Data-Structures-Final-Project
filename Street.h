@@ -4,7 +4,6 @@
 #define STREET_H_
 #include "Resident.h"
 #include "Car.h"
-//#include "Intersection.h"
 #include <string>
 #include <queue>
 
@@ -18,21 +17,8 @@ private:
 public:
 	int capacity;
 	int length;
-	//std::string destination;
 	std::priority_queue<Car> inwardQueue;
 	std::priority_queue<Car> outwardQueue;
-	//Street *intersectingStreet1;
-	//Street *intersectingStreet2;
-
-	/*
-	Adds the given intersection to the street object
-	To be called when all streets are created in simulation
-	*/
-	//void addIntersectingStreets(Street *s1, Street *s2)
-	//{
-	//	intersectingStreet1 = s1;
-	//	intersectingStreet2 = s2;
-	//}
 
 	virtual void updateInner(int clock) = 0;
 	//{
@@ -89,14 +75,12 @@ public:
 	{
 		capacity = 0;
 		length = 0;
-
 	}
 
-	Street(int length, int capacity, std::string destination)
+	Street(int length, int capacity)
 	{
 		this->length = length;
 		this->capacity = capacity;
-		this->destination = destination;
 	}
 };
 

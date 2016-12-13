@@ -40,6 +40,8 @@ public:
 			{
 				Car c = visitors.top();
 				c.driver->addDestination(visitors.top().destination); // Add the destination to the residents multiset
+				c.driver->addDowntownTime(clock - c.getCurrRouteEntryTime()); // Adds the time the resident has spent downtown
+				c.setCurrRouteEntryTime(clock); // Resets that counter
 				c.projectedArrivalTime = clock + (streetToTake.length / (1.0 * visitors.top().drivingSpeed) * 60);
 				streetToTake.outwardQueue.push(c);
 				visitors.pop();

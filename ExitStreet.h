@@ -8,15 +8,9 @@
 class ExitStreet : public Street
 {
 private:
-	//DestinationStreet *bankStreet;
-	//DestinationStreet *schoolStreet;
-
 
 public: 
-	void updateInner(int clock)
-	{
-		
-	}
+	void updateInner(int clock) {}
 
 	void updateOuter(int clock)
 	{
